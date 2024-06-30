@@ -25,25 +25,6 @@
     </div>
 
     <script>
-         document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            // Cek apakah username sudah ada
-            if (localStorage.getItem(username)) {
-                alert('Username sudah digunakan. Silakan pilih username lain.');
-                return;
-            }
-            
-            // Simpan data pengguna ke LocalStorage
-            localStorage.setItem(username, JSON.stringify({username, password}));
-            
-            alert('Registrasi berhasil!');
-            document.getElementById('registrationForm').reset();
-        });
-        
         $(document).ready(function() {
             $("#registerForm").submit(function(event) {
                 event.preventDefault(); 
