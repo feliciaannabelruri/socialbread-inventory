@@ -1,15 +1,18 @@
 {
-    "version": 2,
-    "rewrites": [
-      { "source": "/",  "destination": "/main.html" }
-    ],
-    "headers": [
-      {
-        "source": "/(.*)",
-        "headers": [
-          { "key": "Cache-Control", "value": "s-maxage=0" }
-        ]
-      }
-    ]
-  }
-  
+  "version": 2,
+  "rewrites": [
+    { "source": "/", "destination": "/login.html" },
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/register", "destination": "/register.html" },
+    { "source": "/main", "destination": "/main.html" },
+    { "source": "/(.*)", "destination": "/login.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "s-maxage=0" }
+      ]
+    }
+  ]
+}
