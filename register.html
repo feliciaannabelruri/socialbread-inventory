@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        <form id="registerForm">
+            <label>Username</label><br>
+            <input type="text" id="username"><br>
+            <label>Email</label><br>
+            <input type="email" id="email"><br>
+            <label>Password</label><br>
+            <input type="password" id="password"><br>
+            <label>Confirm Password</label><br>
+            <input type="password" id="confirmPassword"><br>
+            <button type="submit">Register</button>
+            <p>Sudah punya akun? <a href="login.html">Login di sini</a></p>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#registerForm").submit(function(event) {
+                event.preventDefault(); 
+                
+                var username = $("#username").val();
+                var email = $("#email").val();
+                var password = $("#password").val();
+                var confirmPassword = $("#confirmPassword").val();
+                
+                if (password !== confirmPassword) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Password Confirmation Error',
+                        text: 'The password and confirm password fields must match.'
+                    });
+                    return;
+                }
+
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful!',
+                    text: 'You are being redirected to the login page.'
+                }).then(function() {
+                    window.location.href = "login.html";
+                });
+            });
+        });
+    </script>
+</body>
+</html>

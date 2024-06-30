@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <style>
+      /* Import a modern, attractive font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* Apply styles to the entire body */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Style headings */
+h1, h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+/* Style the form */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Style form inputs */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Style the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: #fff;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Style action buttons in the table */
+.action-buttons button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.action-buttons button:hover {
+    background-color: #c0392b;
+}
+    </style>
+</head>
+<body>
+    <h1>Social Bread Inventory Management System</h1>
+    
+    <h2>Add New Item</h2>
+    <form id="item-form">
+        <label for="item-name">Item Name:</label>
+        <select id="item-name" required>
+            <option value="">--Select an item--</option>
+            <option value="Iphone 11 64 GB White">Iphone 11 64 GB White</option>
+            <option value="Iphone 11 64 GB Black">Iphone 11 64 GB Black</option>
+            <option value="Mic Mixio">Mic Mixio</option>
+            <option value="Mic GJQ Wireless">Mic GJQ Wireless</option>
+            <option value="Mic TNW">Mic TNW</option>
+            <option value="Charger ugreen type c to lightning">Charger ugreen type c to lightning</option>
+            <option value="Charger ugreen type c to c">Charger ugreen type c to c</option>
+            <option value="Adapter Baseus Type C to Lightning Hitam">Adapter Baseus Type C to Lightning Hitam</option>
+            <option value="Stop kontak 6 Lubang">Stop kontak 6 Lubang</option>
+            <option value="Stop kontak 5 Lubang">Stop kontak 5 Lubang</option>
+            <option value="Samsung A045F">Samsung A045F</option>
+            <option value="Oppo A31 128GB Black">Oppo A31 128GB Black</option>
+            <option value="Oppo A31 128GB Blue">Oppo A31 128GB Blue</option>
+            <option value="Kepala charger Ugreen type C">Kepala charger Ugreen type C</option>
+            <option value="Kepala charger samsung">Kepala charger samsung</option>
+            <option value="Kepala charger Oppo">Kepala charger Oppo</option>
+            <option value="Charger USB to micro">Charger USB to micro</option>
+            <option value="Charger USB to C">Charger USB to C</option>
+            <option value="Kabel Adapter Baseus Type C to Lightning Navy">Kabel Adapter Baseus Type C to Lightning Navy</option>
+            <option value="Adapter Baseus Navy">Adapter Baseus Navy</option>
+            <option value="Tripod Hitam">Tripod Hitam</option>
+            <option value="Redmi">Redmi</option>
+            <option value="Saramonic Microphone">Saramonic Microphone</option>
+            <option value="Adapter BOSS">Adapter BOSS</option>
+            <option value="Charger Lenovo">Charger Lenovo</option>
+            <option value="Iphone 12 Purple">Iphone 12 Purple</option>
+            <option value="Phone holder">Phone holder</option>
+            <option value="Redmi 10A 64GB Black">Redmi 10A 64GB Black</option>
+        </select><br><br>
+        
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" required><br><br>
+        
+        <label for="location">Location:</label>
+        <select id="location" required>
+            <option value="">--Select a location--</option>
+            <option value="Box 1">Box 1</option>
+            <option value="Box 2">Box 2</option>
+            <option value="Box 3">Box 3</option>
+            <option value="Box 4">Box 4</option>
+            <option value="Box 5">Box 5</option>
+            <option value="Box 6">Box 6</option>
+            <option value="Box 7">Box 7</option>
+            <option value="Box 8">Box 8</option>
+            <option value="Box-Classroom">Box-Classroom</option>
+            <option value="Box-Supermarket">Box-Supermarket</option>
+            <option value="Box-Bathroom">Box-Bathroom</option>
+            <option value="Room-OnAir">Room-OnAir</option>
+            <option value="Room-Dance">Room-Dance</option>
+            <option value="Box-Bedroom">Box-Bedroom</option>
+            <option value="Box-Living Room">Box-Living Room</option>
+            <option value="Box-Music">Box-Music</option>
+            <option value="Room-Management (Window)">Room-Management (Window)</option>
+            <option value="Room-Management">Room-Management</option>
+            <option value="Room-Meeting Room">Room-Meeting Room</option>
+            <option value="Room-CLevel">Room-CLevel</option>
+            <option value="Room-Imnida">Room-Imnida</option>
+            <option value="Brasov">Brasov</option>
+        </select><br><br>
+        
+        <label for="status">Status:</label>
+        <select id="status" required>
+            <option value="">--Select a status--</option>
+            <option value="in used">In Used</option>
+            <option value="available">Available</option>
+            <option value="broken">Broken</option>
+        </select><br><br>
+        
+        <label for="condition">Condition:</label>
+        <select id="condition" required>
+            <option value="">--Select a condition--</option>
+            <option value="good">Good</option>
+            <option value="broken">Broken</option>
+        </select><br><br>
+        
+        <label for="icloud">iCloud:</label>
+        <input type="text" id="icloud"><br><br>
+        
+        <label for="shopee">Shopee:</label>
+        <input type="text" id="shopee"><br><br>
+        
+        <label for="tiktok">TikTok:</label>
+        <input type="text" id="tiktok"><br><br>
+        
+        <button type="submit">Add Item</button>
+    </form>
+
+    <h2>Current Inventory</h2>
+    <table id="inventory-table">
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Condition</th>
+                <th>iCloud</th>
+                <th>Shopee</th>
+                <th>TikTok</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="inventory.js"></script>
+</body>
+</html>
