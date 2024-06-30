@@ -1,4 +1,95 @@
-// Initialize inventory from localStorage or create an empty array
+// Firebase configuration
+const firebaseConfig = {
+    // Your Firebase config here
+  };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  // Get references to Firebase services
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  
+  // Function to register a new user
+  function register(username, email, password) {
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        // Save additional user info to Firestore
+        return db.collection('users').doc(user.uid).set({
+          username: username,
+          email: email
+        });
+      })
+      .then(() => {
+        console.log("User registered successfully");
+      })
+      .catch((error) => {
+        console.error("Error registering user:", error);
+      });
+  }
+  
+  // Function to login
+  function login(email, password) {
+    auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("User logged in successfully");
+        loadUserData(user.uid);
+      })
+      .catch((error) => {
+        console.error("Error logging in:", error);
+      });
+  }
+  
+  // Function to load user data
+  function loadUserData(userId) {
+    db.collection('users').doc(userId).get()
+      .then((doc) => {
+        if (doc.exists) {
+          const userData = doc.data();
+          console.log("User data:", userData);
+          // Update local storage with user data
+          localStorage.setItem('userData', JSON.stringify(userData));
+        } else {
+          console.log("No user data found");
+        }
+      })
+      .catch((error) => {
+        console.error("Error loading user data:", error);
+      });
+  }
+  
+  // Function to save user data
+  function saveUserData(userId, data) {
+    db.collection('users').doc(userId).update(data)
+      .then(() => {
+        console.log("User data saved successfully");
+        // Update local storage
+        localStorage.setItem('userData', JSON.stringify(data));
+      })
+      .catch((error) => {
+        console.error("Error saving user data:", error);
+      });
+  }
+  
+  // Function to check if user is logged in and load data
+  function checkAuthState() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log("User is logged in");
+        loadUserData(user.uid);
+      } else {
+        console.log("User is not logged in");
+        localStorage.removeItem('userData');
+      }
+    });
+  }
+  
+  // Call this function when your app initializes
+  checkAuthState();
+  
+  // Initialize inventory from localStorage or create an empty array
 let inventory = JSON.parse(localStorage.getItem('inventory')) || [];
 
 // Function to save inventory to localStorage
